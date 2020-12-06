@@ -1,5 +1,7 @@
 <?php
 require("db.php");
+$rezultat=mysqli_query($con, "SELECT * from logi where idu = $_COOKIE['user'] ORDER BY idl DESC");
+$rekord = mysqli_fetch_array($rezultat);
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,8 +15,8 @@ require("db.php");
 <a href="logout.php">Wyloguj</a>
 
 <?php
-if($COOKIE_["warning"] ==1){
-	echo'UWAGA!';
+if($rezultat[3] ==1){
+	echo'UWAGA!!';
 }
 ?>
 
