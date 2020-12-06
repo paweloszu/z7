@@ -17,7 +17,7 @@ $rekord = mysqli_fetch_array($rezultat);
 
 <?php
 if($rekord[3] == 1){
-	echo'UWAGA!!';
+	echo'<p style="color:red">UWAGA! Ostatnia próba logowania nieudana!.</p>';
 }
 ?>
 
