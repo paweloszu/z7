@@ -1,6 +1,6 @@
 <?php
 require("db.php");
-$rezultat=mysqli_query($con, "SELECT * from logi where idu = $_COOKIE['user'] ORDER BY idl DESC");
+$rezultat = mysqli_query($con, "SELECT * from logi where idu = $_COOKIE['idu'] ORDER BY idl DESC") or die ("Błąd zapytania do bazy danych");
 $rekord = mysqli_fetch_array($rezultat);
 ?>
 <!DOCTYPE html>

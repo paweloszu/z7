@@ -22,6 +22,7 @@
  {
 	 
 	setcookie("user", $user, time()+3600, "/","", 0); //cookie na czas 1 godzny
+	setcookie("idu", $idu, time()+3600, "/","", 0); //cookie na czas 1 godzny
 	
 	mysqli_query($con, "INSERT INTO logi (idu, failed) VALUES ($idu, 0)");
 	
