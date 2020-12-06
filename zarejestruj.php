@@ -9,8 +9,6 @@
  $pass1=$_POST['pass1']; // hasło z formularza
  $pass2=$_POST['pass2']; // hasło z formularza
 
-// $link = mysqli_connect("mysql01.paweloszu.beep.pl", "user5", "haslousera", "zad5");
-// if(!$link) { echo"Błąd: ". mysqli_connect_errno()." ".mysqli_connect_error(); } // obsługa błędu połączenia z BD
 
 if($pass1 == $pass2){
 	mysqli_query($con, "INSERT into users (username, password) VALUES ('$user', '$pass1')") or die ("Błąd zapytania do bazy danych");
