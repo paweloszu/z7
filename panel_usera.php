@@ -15,7 +15,7 @@ $rekord = mysqli_fetch_array($rezultat);
 <a href="logout.php">Wyloguj</a>
 
 <?php
-if($rezultat[3] ==1){
+if($rekord[3] == 1){
 	echo'UWAGA!!';
 }
 ?>
