@@ -10,6 +10,7 @@
 
  $result = mysqli_query($con, "SELECT * FROM users WHERE username='$user'"); // pobranie z BD wiersza, w którym login=login z formularza
  $rekord = mysqli_fetch_array($result); // wiersza z BD, struktura zmiennej jak w BD
+ $idu = $rekord['id'];
  if(!$rekord) //Jeśli brak, to nie ma użytkownika o podanym loginie
  {
  mysqli_close($con); // zamknięcie połączenia z BD
@@ -22,7 +23,7 @@
 	 
 	setcookie("user", $user, time()+3600, "/","", 0);
 	
-	mysqli_query($con, "INSERT INTO logi ()");
+	mysqli_query($con, "INSERT INTO logi (idu, failed) VALUES ($idu, 0)");
 	
 	header("Location: panel_usera.php");
 	
@@ -32,7 +33,8 @@
  }
  else
  {
-	 mysqli_query($con, "UPDATE users SET last_login_fail = TRUE WHERE username='$user'");
+	 mysqli_query($con, "INSERT INTO logi (idu, failed) VALUES ($idu, 1)");
+	 //mysqli_query($con, "UPDATE users SET last_login_fail = TRUE WHERE username='$user'");
  mysqli_close($con);
  echo "Błąd w haśle !"; // UWAGA nie wyświetlamy takich podpowiedzi dla hakerów
  }
