@@ -14,29 +14,26 @@
  if(!$rekord) //Jeśli brak, to nie ma użytkownika o podanym loginie
  {
  mysqli_close($con); // zamknięcie połączenia z BD
- echo "Brak użytkownika o takim loginie !"; // UWAGA nie wyświetlamy takich podpowiedzi dla hakerów
+ echo "Błędnie dane logowania";
  }
  else
  { // jeśli $rekord istnieje
  if($rekord['password']==$pass) // czy hasło zgadza się z BD
  {
 	 
-	setcookie("user", $user, time()+3600, "/","", 0);
+	setcookie("user", $user, time()+3600, "/","", 0); //cookie na czas 1 godzny
 	
 	mysqli_query($con, "INSERT INTO logi (idu, failed) VALUES ($idu, 0)");
 	
 	header("Location: panel_usera.php");
 	
-	if($rekord['last_login_fail']){
-		setcookie("warning", "1", time()+3600, "/","", 0);
-	}
  }
  else
  {
 	 mysqli_query($con, "INSERT INTO logi (idu, failed) VALUES ($idu, 1)");
-	 //mysqli_query($con, "UPDATE users SET last_login_fail = TRUE WHERE username='$user'");
+	 
  mysqli_close($con);
- echo "Błąd w haśle !"; // UWAGA nie wyświetlamy takich podpowiedzi dla hakerów
+ echo "Błędne dane logowania";
  }
 }
 ?>
