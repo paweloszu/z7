@@ -17,8 +17,27 @@ $rekord = mysqli_fetch_array($rezultat);
 
 <?php
 if($rekord[3] == 1){
-	echo'<p style="color:red">UWAGA! Ostatnia próba logowania nieudana!.</p>';
+	echo'<p style="color:red">UWAGA! Ostatnia próba logowania nieudana!</p>';
 }
+?>
+<br>
+Pliki użytkownika:<br>
+
+<?php
+$directory = $_COOKIE["user"];
+echo "$directory";
+<br>
+
+//
+$files = scandir($directory);
+sort($files); // this does the sorting
+foreach($files as $file){
+echo'<a href="$directory'.$file.'">'.$file.'</a><br>';
+}
+
+
+
+
 ?>
 
 </div>
