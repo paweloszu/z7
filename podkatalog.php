@@ -22,10 +22,11 @@ echo'<p style="color:red">UWAGA! Ostatnia próba logowania nieudana! Czas: ' . $
 }
 ?>
 <br>
-Pliki w podkatalogu :<br><br>
+Pliki w podkatalogu : <?php echo "{$_GET["subdir"]}"; ?><br><br>
 
 <?php
 $directory = $_COOKIE["user"] . "/" . $_GET["subdir"];
+$subdir = $_GET["subdir"];
 
 $files = scandir($directory);
 $files = array_diff(($files), array('.', '..'));
@@ -33,7 +34,9 @@ foreach($files as $file){
 
 if(is_file($directory.'/'.$file)){
 	
-echo "<a href=".$directory."/".$file." download>$file</a><br>";
+	$file_url = str_replace(' ', '%20', $file);
+	
+echo "<a href=".$directory."/".$file_url." download>$file</a><br>";
 }
 }
 ?>
@@ -47,7 +50,8 @@ Wgraj plik do katalogu:
  ENCTYPE="multipart/form-data">
  <input type="file" name="plik"/>
  <input type="submit" value="Wyślij plik"/>
- <input type='hidden' name='var' value='<?php echo "$directory";?>'/> 
+ <input type="hidden" name="var" value='<?php echo "$directory";?>'/>
+ <input type="hidden" name="subdir" value='<?php echo "$subdir";?>'/>
  </form>
  <br>
  

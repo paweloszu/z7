@@ -48,7 +48,9 @@ foreach($files as $file){
 
 if(is_dir($directory.'/'.$file)){
 	
-echo "<a href=podkatalog.php?subdir=$file>$file</a><br>";
+	$file_url = str_replace(' ', '%20', $file);
+	
+echo "<a href=podkatalog.php?subdir=$file_url>$file</a><br>";
 }
 }
 ?>
