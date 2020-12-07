@@ -32,7 +32,9 @@ foreach($files as $file){
 
 if(is_file($directory.'/'.$file)){
 	
-echo "<a href=".$directory."/".$file." download>$file</a><br>";
+	$file_url = str_replace(' ', '%20', $file);
+	
+echo "<a href=".$directory."/".$file_url." download>$file</a><br>";
 }
 }
 ?>
