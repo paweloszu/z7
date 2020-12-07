@@ -3,6 +3,7 @@ require("db.php");
 $rezultat = mysqli_query($con, "SELECT * from logi where idu = $_COOKIE[idu] ORDER BY idl DESC") or die ("Błąd zapytania do bazy danych");
 $rekord = mysqli_fetch_array($rezultat);
 $rekord = mysqli_fetch_array($rezultat);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,10 +22,10 @@ echo'<p style="color:red">UWAGA! Ostatnia próba logowania nieudana! Czas: ' . $
 }
 ?>
 <br>
-Pliki użytkownika:<br><br>
+Pliki w podkatalogu :<br><br>
 
 <?php
-$directory = $_COOKIE["user"];
+$directory = $_COOKIE["user"] . "/" . $_GET["subdir"];
 
 $files = scandir($directory);
 $files = array_diff(($files), array('.', '..'));
@@ -37,39 +38,22 @@ echo "<a href=".$directory."/".$file." download>$file</a><br>";
 }
 ?>
 <br>
-Podkatalogi użytkownika:<br><br>
 
-<?php
-$directory = $_COOKIE["user"];
 
-$files = scandir($directory);
-$files = array_diff(($files), array('.', '..'));
-foreach($files as $file){
-
-if(is_dir($directory.'/'.$file)){
-	
-echo "<a href=podkatalog.php?subdir=$file>$file</a><br>";
-}
-}
-?>
-<br><br>
 
 Wgraj plik do katalogu:
 
-<form action="odbierz.php" method="POST"
+<form action="odbierz_subdir.php" method="POST"
  ENCTYPE="multipart/form-data">
  <input type="file" name="plik"/>
  <input type="submit" value="Wyślij plik"/>
+ <input type='hidden' name='var' value='<?php echo "$directory";?>'/> 
  </form>
  <br>
+ 
+ <a href="panel_usera.php">Powrót do głównego katalogu</a>
+ 
 
-
-
-Utwórz katalog:<br>
-
-<form method="post" action="mkdir.php">
- Nazwa katalogu:<input type="text" name="dir_name" maxlength="40" size="40"><br>
- <input type="submit" value="Utwórz"/>
 
 
 </div>
