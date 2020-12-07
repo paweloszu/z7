@@ -10,11 +10,11 @@
  $pass2=$_POST['pass2']; // hasło z formularza
 
 
-if($pass1 == $pass2){
-	mysqli_query($con, "INSERT into users (username, password) VALUES ('$user', '$pass1')") or die ("Błąd zapytania do bazy danych");
+if($pass1 == $pass2){ // jeżeli powtórzone hasło zgadza się
+	mysqli_query($con, "INSERT into users (username, password) VALUES ('$user', '$pass1')") or die ("Błąd zapytania do bazy danych"); //dodanie użytkownika do bazy
 	mysqli_close($con);
 	
-	mkdir ("$user", 0777);
+	mkdir ("$user", 0777);	//utworzenie katalogu dla użytkownika
 	
 	echo 'Zarejestrowano pomyślnie! <br>
 	<a href="login_form_user.php">Logowanie</a>';
