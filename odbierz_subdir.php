@@ -2,7 +2,6 @@
  if (is_uploaded_file($_FILES['plik']['tmp_name']))
  {
 
-		 
 	$dest = "{$_POST["var"]}/{$_FILES['plik']['name']}";
 
 	move_uploaded_file($_FILES['plik']['tmp_name'], $dest);
